@@ -18,9 +18,10 @@ defmodule Wayback.Mixfile do
   end
 
   # Dependencies:
-  defp deps do
-    [{:httpoison, "~> 0.9.0"}]
-  end
+  defp deps do [
+    {:httpoison, "~> 0.9.0"},
+    {:ex_doc, "~> 0.13.0", only: :dev}
+  ] end
 
   def package do [
     name: :wayback,
