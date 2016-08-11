@@ -4,10 +4,10 @@ defmodule Wayback.Mixfile do
   def project do
     [app: :wayback,
      version: "0.1.0",
-     elixir: "~> 1.3",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+     elixir: "~> 1.2",
+     description: "Request moments in history for a web address with the Wayback Machine.",
+     package: package,
+     deps: deps]
   end
 
   # Configuration for the OTP application
@@ -21,4 +21,11 @@ defmodule Wayback.Mixfile do
   defp deps do
     [{:httpoison, "~> 0.9.0"}]
   end
+
+  def package do [
+    name: :wayback,
+    maintainers: ["Luke Edwards"],
+    licenses: ["MIT"],
+    links: %{"Github" => "https://github.com/lukeed/elixir-wayback"}
+  ] end
 end
