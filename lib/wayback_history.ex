@@ -15,5 +15,8 @@ defmodule WaybackHistory do
 
 	def links(url), do: timeline(url) |> Enum.map(fn {_, a} -> a end)
 
+	def newest(url), do: timeline(url) |> List.last
+	def oldest(url), do: timeline(url) |> List.first
+
 	defp wrap(url), do: "http://web.archive.org/web/timemap/link/#{url}"
 end
