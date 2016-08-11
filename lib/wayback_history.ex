@@ -5,11 +5,14 @@ defmodule WaybackHistory do
 
 	import HTTPoison, only: [get!: 1]
 
-	@spec timeline(String.t) :: [tuple()]
 	@doc """
 	Get the history timeline for a URL.
 	Returns a list of tuples; `{datestring, url}`.
+
+	## Example
+	  iex> timeline()
 	"""
+	@spec timeline(String.t) :: [tuple()]
 	def timeline(url) do
 		get!(wrap(url))
 		|> Map.get(:body)
@@ -31,7 +34,7 @@ defmodule WaybackHistory do
 	@doc """
 	Return the most recent entry from a url's timeline.
 	"""
-	@spec newset(String.t) :: {datetime, url}
+	@spec newest(String.t) :: {datetime, url}
 	def newest(url), do: timeline(url) |> List.last
 
 	@doc """
