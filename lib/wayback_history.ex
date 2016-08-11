@@ -12,8 +12,7 @@ defmodule WaybackHistory do
 			end)
 	end
 
-	# def urls do
-	# end
+	def links(url), do: timeline(url) |> Enum.map(fn {_, a} -> a end)
 
 	defp wrap(url), do: "http://web.archive.org/web/timemap/link/#{url}"
 end
