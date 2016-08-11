@@ -1,6 +1,15 @@
 defmodule WaybackHistory do
+	@moduledoc """
+	Request moments in history for a URL with the [Wayback Machine](https://archive.org/web/).
+	"""
+
 	import HTTPoison, only: [get!: 1]
 
+	@spec timeline(String.t) :: [tuple()]
+	@doc """
+	Get the history timeline for a URL.
+	Returns a list of tuples; `{datestring, url}`.
+	"""
 	def timeline(url) do
 		get!(wrap(url))
 		|> Map.get(:body)
@@ -13,9 +22,22 @@ defmodule WaybackHistory do
 			end)
 	end
 
+	@doc """
+	Return only the url links from a history timeline.
+	"""
+	@spec links(String.t) :: [String.t]
 	def links(url), do: timeline(url) |> Enum.map(fn {_, a} -> a end)
 
+	@doc """
+	Return the most recent entry from a url's timeline.
+	"""
+	@spec newset(String.t) :: {datetime, url}
 	def newest(url), do: timeline(url) |> List.last
+
+	@doc """
+	Return the oldest entry from a url's timeline.
+	"""
+	@spec oldest(String.t) :: {datetime, url}
 	def oldest(url), do: timeline(url) |> List.first
 
 	defp wrap(url), do: "http://web.archive.org/web/timemap/link/#{url}"
