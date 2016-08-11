@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-#     config :wayback_history, key: :value
+#     config :wayback, key: :value
 #
 # And access this configuration in your application as:
 #
-#     Application.get_env(:wayback_history, :key)
+#     Application.get_env(:wayback, :key)
 #
 # Or configure a 3rd-party app:
 #

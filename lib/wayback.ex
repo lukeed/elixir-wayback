@@ -1,4 +1,4 @@
-defmodule WaybackHistory do
+defmodule Wayback do
 	@moduledoc """
 	Request moments in history for a URL with the [Wayback Machine](https://archive.org/web/).
 	"""
@@ -8,9 +8,6 @@ defmodule WaybackHistory do
 	@doc """
 	Get the history timeline for a URL.
 	Returns a list of tuples; `{datestring, url}`.
-
-	## Example
-	  iex> timeline()
 	"""
 	@spec timeline(String.t) :: [tuple()]
 	def timeline(url) do
@@ -34,13 +31,13 @@ defmodule WaybackHistory do
 	@doc """
 	Return the most recent entry from a url's timeline.
 	"""
-	@spec newest(String.t) :: {datetime, url}
+	@spec newest(String.t) :: {:datestring, :url}
 	def newest(url), do: timeline(url) |> List.last
 
 	@doc """
 	Return the oldest entry from a url's timeline.
 	"""
-	@spec oldest(String.t) :: {datetime, url}
+	@spec oldest(String.t) :: {:datestring, :url}
 	def oldest(url), do: timeline(url) |> List.first
 
 	defp wrap(url), do: "http://web.archive.org/web/timemap/link/#{url}"
